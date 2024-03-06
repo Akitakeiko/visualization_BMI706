@@ -2,12 +2,12 @@ import numpy as np
 import pandas as pd
 
 def combined_df():
-    df = pd.read_csv('/Users/akitakeiko/visualization_BMI706/data/combined_dfall.csv', index_col = 0)
+    df = pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGTM3EES2DYLQGU3BA4ZPI3XWQ', index_col = 0)
     return df
 
 def hpv_df():
-    hpv_past = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/hpv_past_results.csv", index_col = 0)
-    hpv_2020 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/hpv_2020s_results.csv", index_col = 0)
+    hpv_past = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/hpv_past_results.csv?token=GHSAT0AAAAAACOCXHGTMCSF3TAHKVBJDAJCZPI3YWA", index_col = 0)
+    hpv_2020 = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/hpv_2020s_results.csv?token=GHSAT0AAAAAACOCXHGSCN43OVW5QLTL4W5AZPI3YCA", index_col = 0)
     id_vars = ['region', 'income_group', 'year', 'assumption_type']
     value_vars = ['coverage', 'cancer_prevented', 'deaths_prevented', 'possible_cancer_cases', 'possible_cancer_deaths']
     
@@ -19,9 +19,9 @@ def hpv_df():
     return df2
 
 def cohort_df():
-    df3 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/combined_cohort.csv")
+    df3 = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_cohort.csv?token=GHSAT0AAAAAACOCXHGTRFU3T4T6DZDPTAAYZPI3ZCA")
     return df3
 
 def country_df():
-    df4 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/country-code_cohort.csv")
+    df4 = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/country-code_cohort.csv?token=GHSAT0AAAAAACOCXHGS67IHWHNSUDXWVP34ZPI3ZLA")
     return df4
