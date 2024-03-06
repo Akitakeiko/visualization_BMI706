@@ -8,6 +8,8 @@ def load_data():
     df = pd.read_csv('/Users/akitakeiko/visualization_BMI706/data/combined_dfall.csv', index_col = 0)
     return df
 
+
+
 df = load_data()
 
 alt.data_transformers.disable_max_rows(); 
