@@ -42,28 +42,26 @@ subset = subset[subset["income_group"] == income]
 nearest = alt.selection(type='single', nearest=True, on='mouseover',
                         fields=['year'], empty='none')
 
-# The basic line
-line_cov = alt.Chart(df).mark_bar().encode(
-    x='year:O',
-    y='current_cov:Q',
+# Task 3
+bar_current_cov = alt.Chart(df).mark_bar().encode(
+    y='year:O',  # Year on the y-axis
+    x='current_cov:Q',  # Current coverage values on the x-axis
     color=alt.value('steelblue')  # Bar color
-).add_selection(
-    nearest
+).properties(
+    title='Current Coverage by Year'
 )
 
-line_cost = alt.Chart(df).mark_bar().encode(
-    x='year:O',
-    y='curr_cost:Q',
+# Create the horizontal bar chart for curr_cost
+bar_curr_cost = alt.Chart(df).mark_bar().encode(
+    y='year:O',  # Year on the y-axis
+    x='curr_cost:Q',  # Current cost values on the x-axis
     color=alt.value('firebrick')  # Bar color
-).add_selection(
-    nearest
+).properties(
+    title='Current Cost by Year'
 )
 
-# Combine the charts
-chart = alt.layer(line_cov, line_cost).resolve_scale(
-    y='independent'
-)
-
-st.altair_chart(chart, use_container_width=True)
-
-
+# Use Streamlit to display the charts
+st.write("## Current Coverage by Year")
+st.altair_chart(bar_current_cov, use_container_width=True)
+st.write("## Current Cost by Year")
+st.altair_chart(bar_curr_cost, use_container_width=True)
