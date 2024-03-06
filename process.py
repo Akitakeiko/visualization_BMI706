@@ -66,7 +66,7 @@ st.write('### Explore spatial and temporal HPV cases, income group and vaccinati
 year= st.slider('Year', min_value=2010, max_value=2030, value=2020)
 subset = df3[df3["year"] == year]
 
-""" countries_default = [
+countries_default = [
     "Austria",
     "United Kingdom",
     "Brazil",
@@ -77,7 +77,7 @@ subset = df3[df3["year"] == year]
 ]
 countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
-subset = subset[subset["country_name"].isin(countries)] """
+subset_country = subset[subset["country_name"].isin(countries)]
 
 from map import return_world_map, return_income_map
 cases_map = return_world_map(df4,year)
@@ -87,7 +87,7 @@ st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(cases_map, use_container_width=True)
 
 
-bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
+bar_chart_cohort = alt.Chart(subset_country).mark_bar(color='steelblue').encode(
     x=alt.Y('sum(cohort_size):Q', title='Sum of cohort size'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
     tooltip=['country_name', 'sum(cohort_size)']
@@ -95,7 +95,7 @@ bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     title='Cohort Size by Country'
 )
 
-bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
+bar_chart_cases = alt.Chart(subset_country).mark_bar(color='pink').encode(
     x=alt.Y('sum(possible_cancer_cases):Q', title='Sum of HPV cancer cases'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
     tooltip=['country_name', 'sum(possible_cancer_cases)']
