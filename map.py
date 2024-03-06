@@ -93,4 +93,4 @@ def return_income_map(data):
         color = 'independent'
     ) 
              
-return income_map
+    return income_map
