@@ -29,7 +29,7 @@ def return_world_map(data_subset, data_full, selected_year):
         ).project(project
         ).transform_lookup(
             lookup = 'id',
-            from_ = alt.LookupData(data_subset, 'country-code', ['country_name','year','possible_cancer_cases']),
+            from_ = alt.LookupData(data_subset, 'code', ['country_name','year','possible_cancer_cases']),
         )
 
     cases_scale = alt.Scale(domain=[data_full['possible_cancer_cases'].min(), data_full['possible_cancer_cases'].max()], type = 'log') #we want the domain to stay the same regardless of subset
