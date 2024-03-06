@@ -50,7 +50,7 @@ def return_income_map(df_cleaned):
     return income_map
 
 def return_world_map(df_cleaned, year):
-    if (data_subset.shape[0] == 0):
+    if (df_cleaned.shape[0] == 0):
         return map_background.properties(title=f'HPV cases worldwide in {selected_year}')
 
     chart_base_map = alt.Chart(source
