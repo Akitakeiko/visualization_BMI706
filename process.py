@@ -140,7 +140,41 @@ income2 = alt.Chart(subset).mark_line(point=True,color='green').encode(
 income1
 income2
 
+# Task 3
+df_melted = df.melt(id_vars=['year'], value_vars=['proj_cost', 'curr_cost'], var_name='category', value_name='value')
 
+# Create the stacked bar chart
+stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
+    x='year:N',  # N indicates nominal/categorical data
+    y=alt.Y('sum(value):Q', stack='zero', title='Total Value'),  # Stack the bars
+    color='category:N',  # Differentiate by category
+    tooltip=['year:N', 'category:N', 'sum(value):Q']
+).properties(
+    width=600,
+    height=400,
+    title='Yearly Comparison of Current and Project Cost'
+)
+
+
+st.write("# Yearly Comparison of Current and Project Cost")
+st.altair_chart(stacked_bar_chart, use_container_width=True)
+# user input for filtering
+selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
+# Filter data based on selection
+filtered_df = df2[df2['assumption_type'] == selected_assumption]
+# stacked bar chart for visualization
+stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
+    x='year:N',  # Year is nominal data
+    y=alt.Y('sum(value):Q', stack='zero'),  # Stack the values of cancer_prevented and deaths_prevented
+    color='metric:N',  # Color by metric (cancer_prevented or deaths_prevented)
+    tooltip=['year:N', 'region:N', 'income_group:N', 'metric:N', 'sum(value):Q']
+).properties(
+    title='Comparison of Cancer Prevented and Deaths Prevented by Year'
+)
+
+# display the chart 
+st.title('Cancer/death Data Visualization')
+st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 
 
