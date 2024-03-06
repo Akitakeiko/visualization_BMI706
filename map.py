@@ -60,7 +60,8 @@ def return_world_map(df_cleaned, selected_year):
             from_ = alt.LookupData(df_cleaned, 'country-code', ['Country','year','possible_cancer_cases']),
         )
 
-    cases_scale = alt.Scale(domain=[df_cleaned['possible_cancer_cases'].min(), df_cleaned['possible_cancer_cases'].max()], type = 'log') #we want the domain to stay the same regardless of subset
+    cases_scale = alt.Scale(domain=[df_cleaned['possible_cancer_cases'].min(), df_cleaned['possible_cancer_cases'].max()],  
+                            scheme='oranges') 
     cases_color = alt.Color(field = 'possible_cancer_cases:Q', type = 'quantitative', scale = cases_scale)
     chart_cases = chart_base_map.mark_geoshape().encode(
         color = cases_color,
