@@ -33,10 +33,10 @@ def return_world_map(data_subset, data_full, selected_year):
         )
 
     cases_scale = alt.Scale(domain=[data_full['possible_cancer_cases'].min(), data_full['possible_cancer_cases'].max()], type = 'log') #we want the domain to stay the same regardless of subset
-    cases_color = alt.Color(field = 'possible_cancer_cases', type = 'quantitative', scale = cases_scale)
+    cases_color = alt.Color(field = 'sum(possible_cancer_cases)', type = 'quantitative', scale = cases_scale)
     chart_cases = chart_base_map.mark_geoshape().encode(
         color = cases_color,
-        tooltip = ['country_name:N', 'possible_cancer_cases:Q']
+        tooltip = ['country_name:N', 'sum(possible_cancer_cases):Q']
         ).properties(
         title=f'HPV cases worldwide in {selected_year}'
     )
