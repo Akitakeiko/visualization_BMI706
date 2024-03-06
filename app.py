@@ -14,12 +14,12 @@ df = load_data()
 
 alt.data_transformers.disable_max_rows(); 
 
-st.set_page_config(
-    layout="wide",
-	initial_sidebar_state = "auto", 
-	page_title = "HPV dashboard",
-    page_icon = '/Users/akitakeiko/visualization_BMI706/img/hpv.png'
-)
+#st.set_page_config(
+    #layout="wide",
+	#initial_sidebar_state = "auto", 
+	#page_title = "HPV dashboard",
+    #page_icon = '/img/hpv.png'
+#)
 
 st.write("## Temporal HPV cases and cohort sizes by Countries")
 year = st.slider("Year", min_value=2010, max_value=2030, value=2021)
