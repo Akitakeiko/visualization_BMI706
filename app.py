@@ -17,12 +17,12 @@ subset = df[df["year"] == year]
 
 countries_default = [
     "Austria",
-    "Germany",
-    "Iceland",
+    "United Kingdom",
+    "Brazil",
     "Spain",
-    "Sweden",
-    "Thailand",
-    "Turkey",
+    "China",
+    "United States",
+    "Iceland",
 ]
 countries_df =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_df, default = countries_default)
