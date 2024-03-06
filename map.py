@@ -2,7 +2,7 @@ import altair as alt
 from vega_datasets import data
 
 ## Set up basic world map as template backgorund
-source = alt.topo_feature(data.world_110m.url, 'countries')
+""" source = alt.topo_feature(data.world_110m.url, 'countries')
 
 width = 400
 height  = 200
@@ -16,7 +16,7 @@ map_background = alt.Chart(source
     width = width,
     height = height
 ).project(project)
-
+ """
 
 def return_world_map(data_subset, data_full, selected_year):
     if (data_subset.shape[0] == 0):
@@ -49,3 +49,48 @@ def return_world_map(data_subset, data_full, selected_year):
     return HPV_cases_map
 
 
+
+source = alt.topo_feature(data.world_110m.url, 'countries')
+
+project = 'equirectangular'
+
+background = alt.Chart(source
+).mark_geoshape(
+    fill='#aaa',
+    stroke='white'
+).properties(
+    width=600,
+    height=300
+).project(project)
+
+def return_income_map(data):
+    chart_base = alt.Chart(source
+    ).properties(
+        width=600,
+        height=300
+    ).project(project
+    ).transform_lookup(
+        lookup="id",
+        from_=alt.LookupData(df_cleaned, "country-code", ['Country', 'income_group']),
+    )
+
+    income_group = alt.Color('income_group:N',type='nominal')
+
+
+    chart_rate = chart_base.mark_geoshape().encode(
+    color= income_group,
+    tooltip=["income_group:N", "Country:N"]
+
+    ).transform_lookup(
+    lookup='id',
+    from_=alt.LookupData(df_cleaned, 'country-code', ['Country', 'income_group'])
+    ).properties(
+    title='Cancer Mortality Rate Worldwide'
+    )
+    
+    income_map = alt.vconcat(background+chart_rate
+    ).resolve_scale(
+        color = 'independent'
+    ) 
+             
+return income_map

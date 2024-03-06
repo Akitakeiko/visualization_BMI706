@@ -221,9 +221,9 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 #map_background
 
-from map import return_world_map
+from map import return_world_map, return_income_map
 HPV_cases_map = return_world_map(df4, subset, year)
-
-st.altair_chart(HPV_cases_map, use_container_width=True)
+income_map = return_income_map(df4)
+st.altair_chart(income_map, use_container_width=True)
 
 
