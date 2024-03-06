@@ -72,7 +72,7 @@ bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     title='Cohort Size by Country'
 )
 
-bar_chart_cases = alt.Chart(subset).mark_bar(color='orange').encode(
+bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
     x=alt.Y('sum(possible_cancer_cases):Q', title='Sum of HPV cases'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
     tooltip=['country_name', 'sum(possible_cancer_cases)']
