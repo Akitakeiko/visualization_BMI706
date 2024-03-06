@@ -41,3 +41,36 @@ income_df = df["income_group"].unique()
 income = st.selectbox("Income Group", options=income_df, index=income_df.tolist().index("Low income"))
 subset = subset[subset["income_group"] == income]
 
+Year = [
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030"
+]
+
+selection = alt.selection_multi(fields=['Year'], bind='legend')
+
+curr_vacc_cohort_chart = alt.Chart(df).mark_bar().encode(
+    x=alt.X('year:O', axis=alt.Axis(title='Year')),
+    y=alt.Y('curr_vacc_cohort_size:Q', axis=alt.Axis(title='Current vaccine cohort')),
+    tooltip=['year', 'curr_vacc_cohort_size']
+)
+
+st.altair_chart(curr_vacc_cohort_chart, use_container_width=True)
