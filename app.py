@@ -43,25 +43,20 @@ nearest = alt.selection(type='single', nearest=True, on='mouseover',
                         fields=['year'], empty='none')
 
 # Task 3
-bar_current_cov = alt.Chart(df).mark_bar().encode(
-    y='year:O',  # Year on the y-axis
-    x='current_cov:Q',  # Current coverage values on the x-axis
-    color=alt.value('steelblue')  # Bar color
+df_melted = df.melt(id_vars=['year'], value_vars=['current_cov', 'curr_cost'], var_name='category', value_name='value')
+
+# Create the stacked bar chart
+stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
+    x='year:N',  # N indicates nominal/categorical data
+    y=alt.Y('sum(value):Q', stack='zero', title='Total Value'),  # Stack the bars
+    color='category:N',  # Differentiate by category
+    tooltip=['year:N', 'category:N', 'sum(value):Q']
 ).properties(
-    title='Current Coverage by Year'
+    width=600,
+    height=400,
+    title='Yearly Comparison of Current Coverage and Cost'
 )
 
-# Create the horizontal bar chart for curr_cost
-bar_curr_cost = alt.Chart(df).mark_bar().encode(
-    y='year:O',  # Year on the y-axis
-    x='curr_cost:Q',  # Current cost values on the x-axis
-    color=alt.value('firebrick')  # Bar color
-).properties(
-    title='Current Cost by Year'
-)
-
-# Use Streamlit to display the charts
-st.write("## Current Coverage by Year")
-st.altair_chart(bar_current_cov, use_container_width=True)
-st.write("## Current Cost by Year")
-st.altair_chart(bar_curr_cost, use_container_width=True)
+# Display the chart in the Streamlit app
+st.write("# Yearly Comparison of Current Coverage and Cost")
+st.altair_chart(stacked_bar_chart, use_container_width=True)
