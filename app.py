@@ -43,7 +43,7 @@ nearest = alt.selection(type='single', nearest=True, on='mouseover',
                         fields=['year'], empty='none')
 
 # The basic line
-line_cov = alt.Chart(data).mark_bar().encode(
+line_cov = alt.Chart(df).mark_bar().encode(
     x='year:O',
     y='current_cov:Q',
     color=alt.value('steelblue')  # Bar color
@@ -51,7 +51,7 @@ line_cov = alt.Chart(data).mark_bar().encode(
     nearest
 )
 
-line_cost = alt.Chart(data).mark_bar().encode(
+line_cost = alt.Chart(df).mark_bar().encode(
     x='year:O',
     y='curr_cost:Q',
     color=alt.value('firebrick')  # Bar color
