@@ -65,7 +65,7 @@ countries_default = [
 ]
 countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
-subset_country = subset[subset["country_name"].isin(countries)]
+subset_country = subset_year[subset_year["country_name"].isin(countries)]
 
 from map import return_world_map, return_income_map
 cases_map = return_world_map(df4,year)
