@@ -43,3 +43,4 @@ income_df = df["income_group"].unique()
 income = st.selectbox("Income Group", options=income_df, index=income_df.tolist().index("Low income"))
 subset = subset[subset["income_group"] == income]
 
+
