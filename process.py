@@ -46,7 +46,7 @@ st.set_page_config(
 
 # Project title description
 st.write('### HPV dashboard')
-st.write('#### Explore spatial and temporal HPV cases, income group and vaccination coverage.')")
+st.write('#### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
 
 # Slider for year
 year= st.slider('year', 2010, 2010, 2020)
