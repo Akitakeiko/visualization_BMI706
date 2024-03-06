@@ -67,6 +67,13 @@ countries_df =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_df, default = countries_default)
 subset = subset[subset["country_name"].isin(countries)]
 
+from map import return_world_map, return_income_map
+cases_map = return_world_map(df4,year)
+income_map = return_income_map(df4)
+st.altair_chart(income_map, use_container_width=True)
+st.altair_chart(cases_map, use_container_width=True)
+
+
 bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     x=alt.Y('sum(cohort_size):Q', title='Sum of cohort size'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
@@ -204,27 +211,10 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 
 
-#source = alt.topo_feature(data.world_110m.url, 'countries')
 
-#width = 400
-#height  = 200
-#project = 'equirectangular'
 
-#map_background = alt.Chart(source
-#).mark_geoshape(
-#    fill = '#aaa',
-#    stroke = 'white'
-#).properties(
-#    width = width,
-#    height = height
-#).project(project)
 
-#map_background
 
-from map import return_world_map, return_income_map
-cases_map = return_world_map(df4,year)
-income_map = return_income_map(df4)
-st.altair_chart(income_map, use_container_width=True)
-st.altair_chart(cases_map, use_container_width=True)
+
 
 
