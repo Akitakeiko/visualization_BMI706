@@ -8,6 +8,11 @@ import os
 from data_clean import combined_df
 df = combined_df()
 
+@st.cache_data
+
+df2 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/hpv_past_results.csv", index_col = 0)df
+
+
 
 ## Streamlit configurations
 st.set_page_config(
@@ -54,9 +59,30 @@ stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
 ).properties(
     width=600,
     height=400,
-    title='Yearly Comparison of Current and Projection Cost'
+    title='Yearly Comparison of Current and Project Cost'
 )
 
 # Display the chart in the Streamlit app
-st.write("# Yearly Comparison of Current and Projection Cost")
+st.write("# Yearly Comparison of Current and Project Cost")
 st.altair_chart(stacked_bar_chart, use_container_width=True)
+
+
+# User input for filtering
+selected_assumption = st.selectbox("Select Assumption Type", options=data['assumption_type'].unique())
+
+# Filter data based on selection
+filtered_data = data[data['assumption_type'] == selected_assumption]
+
+# Define the chart
+chart = alt.Chart(filtered_data).mark_bar().encode(
+    x='region:N',
+    y='coverage:Q',
+    color='income_group:N',
+    column='year:N',
+    tooltip=['region', 'income_group', 'year', 'coverage', 'cancer_prevented', 'deaths_prevented']
+).properties(
+    title=f'Health Coverage and Outcomes by Region and Income Group ({selected_assumption})'
+)
+
+# Display the chart
+st.altair_chart(chart, use_container_width=True)
