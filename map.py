@@ -122,6 +122,11 @@ def return_world_map(df_cleaned, selected_year, width=500, height=300):
     ).properties(
         title=f'HPV cases worldwide in {selected_year}'
     )
+    
+    cases_map = alt.vconcat(background + chart_cases
+    ).resolve_scale(
+        color = 'independent'
+    )
 
-    return chart_cases
+    return cases_map
 
