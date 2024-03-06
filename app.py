@@ -40,11 +40,11 @@ income = st.selectbox("Income Group", options=income_df, index=income_df.tolist(
 subset = subset[subset["income_group"] == income]
 
 nearest = alt.selection(type='single', nearest=True, on='mouseover',
-                        fields=['Year'], empty='none')
+                        fields=['year'], empty='none')
 
 # The basic line
 line_cov = alt.Chart(data).mark_bar().encode(
-    x='Year:O',
+    x='year:O',
     y='current_cov:Q',
     color=alt.value('steelblue')  # Bar color
 ).add_selection(
@@ -52,7 +52,7 @@ line_cov = alt.Chart(data).mark_bar().encode(
 )
 
 line_cost = alt.Chart(data).mark_bar().encode(
-    x='Year:O',
+    x='year:O',
     y='curr_cost:Q',
     color=alt.value('firebrick')  # Bar color
 ).add_selection(
