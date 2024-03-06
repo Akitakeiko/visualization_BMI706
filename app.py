@@ -7,7 +7,7 @@ import os
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv('data/combined_dfall.csv', index_col = 0)
+    df = pd.read_csv('/data/combined_dfall.csv', index_col = 0)
     return df
 
 
