@@ -65,10 +65,10 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 
 # User input for filtering
-selected_assumption = st.selectbox("Select Assumption Type", options=data['assumption_type'].unique())
+selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
 
 # Filter data based on selection
-filtered_data = data[data['assumption_type'] == selected_assumption]
+filtered_data = df2[df2['assumption_type'] == selected_assumption]
 
 # Define the chart
 chart = alt.Chart(filtered_data).mark_bar().encode(
