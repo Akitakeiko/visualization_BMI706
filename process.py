@@ -16,7 +16,10 @@ df = combined_df()
 df2 = hpv_df()
 df3 = cohort_df() 
 
-
+# Slider for year
+year= st.slider('year', 2010, 2010, 2020)
+subset = df3[df3["year"] == year]
+# country multiselection
 countries_default = [
     "Austria",
     "United Kingdom",
@@ -59,10 +62,6 @@ st.write("## final project task2")
 
 
 # Create a heatmap instead of a bar chart
-
-year= st.slider('year', 2010, 2010, 2020)
-subset = df3[df3["year"] == year]
-
 pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_deaths):Q',
     color= 'income_group:N',
