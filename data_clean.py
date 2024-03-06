@@ -24,4 +24,5 @@ def cohort_df():
 
 def country_df():
     df4 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/country-code_cohort.csv")
-    return df4
+    df4_cleaned = df4.dropna(subset=['income_group'])
+    return df4_cleaned
