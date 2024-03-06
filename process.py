@@ -63,8 +63,8 @@ countries_default = [
     "United States",
     "Iceland",
 ]
-countries_df =  df["country_name"].unique()
-countries = st.multiselect("Countries", options = countries_df, default = countries_default)
+countries_name =  df["country_name"].unique()
+countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
 
 from map import return_world_map, return_income_map
