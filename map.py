@@ -8,6 +8,16 @@ width = 400
 height  = 200
 project = 'equirectangular'
 
+map_background = alt.Chart(source
+).mark_geoshape(
+    fill = '#aaa',
+    stroke = 'white'
+).properties(
+    width = width,
+    height = height
+).project(project)
+
+
 def return_world_map(data_subset, data_full, selected_year):
     if (data_subset.shape[0] == 0):
         return map_background.properties(title=f'HPV cases worldwide in {selected_year}')
