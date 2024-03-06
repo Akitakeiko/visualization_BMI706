@@ -173,7 +173,6 @@ chart = alt.layer(bar_current_cost, line_projected_cost).resolve_scale(
 st.title('Comparison of Current and Projected Costs')
 st.altair_chart(chart, use_container_width=True)
 
-st.altair_chart(stacked_bar_chart, use_container_width=True)
 # user input for filtering
 selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
 # Filter data based on selection
