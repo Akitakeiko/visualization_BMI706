@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 
-st.cache_data
+@st.cache_data
 def load_data():
     combined_df= pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGSHQQGSCNSFILX42HUZPHZWIA', index_col = 0)
     return combined_df
@@ -41,28 +41,3 @@ income_df = df["income_group"].unique()
 income = st.selectbox("Income Group", options=income_df, index=income_df.tolist().index("Low income"))
 subset = subset[subset["income_group"] == income]
 
-Year = [
-    "2010",
-    "2011",
-    "2012",
-    "2013",
-    "2014",
-    "2015",
-    "2016",
-    "2017",
-    "2018",
-    "2019",
-    "2020",
-    "2021",
-    "2022",
-    "2023",
-    "2024",
-    "2025",
-    "2026",
-    "2027",
-    "2028",
-    "2029",
-    "2030"
-]
-
-selection = alt.selection_multi(fields=['Year'], bind='legend')
