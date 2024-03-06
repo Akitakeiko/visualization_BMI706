@@ -3,6 +3,15 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
+## Streamlit configurations
+st.set_page_config(
+    layout="wide",
+	initial_sidebar_state = "auto", 
+	page_title = "HPV dashboard",
+    page_icon = 'img/hpv.png'
+)
+
+
 @st.cache_data
 def load_data():
     combined_df= pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGSHQQGSCNSFILX42HUZPHZWIA', index_col = 0)
