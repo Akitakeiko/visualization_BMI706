@@ -48,37 +48,13 @@ def return_income_map(df_cleaned):
     ) 
              
     return income_map
-""" 
+
+
+
 def return_world_map(df_cleaned, selected_year):
-    chart_base_map = alt.Chart(source
-        ).properties( 
-            width = width,
-            height = height
-        ).project(project
-        ).transform_lookup(
-            lookup = 'id',
-            from_ = alt.LookupData(df_cleaned, 'country-code', ['Country','year','possible_cancer_cases']),
-        )
-
-    cases_scale = alt.Scale(domain=[df_cleaned['possible_cancer_cases'].min(), df_cleaned['possible_cancer_cases'].max()], scheme='oranges') #we want the domain to stay the same regardless of subset
-    cases_color = alt.Color(field = 'possible_cancer_cases:Q', type = 'quantitative', scale = cases_scale)
-    chart_cases = chart_base_map.mark_geoshape().encode(
-        color = cases_color,
-        tooltip = ['Country:N', 'possible_cancer_cases:Q']
-        ).properties(
-        title=f'HPV cases worldwide in {selected_year}'
-    )
-
-    cases_map = alt.vconcat(background + chart_cases
-    ).resolve_scale(
-        color = 'independent'
-    )
-
-    return cases_map """
-
-
-
-def return_world_map(df_cleaned):
+    if (df_cleaned.shape[0] == 0):
+        return background.properties(title=f'HPV cases worldwide in {selected_year}')
+    
     case_scale = alt.Scale(domain=[df_cleaned['possible_cancer_cases'].min(), df_cleaned['possible_cancer_cases'].max()], scheme='oranges')
     rate_color = alt.Color(field="possible_cancer_cases", type="quantitative", scale=case_scale)
 
@@ -98,7 +74,7 @@ def return_world_map(df_cleaned):
     lookup='id',
     from_=alt.LookupData(df_cleaned, 'country-code', ['Country','possible_cancer_cases'])
     ).properties(
-    title='HPV cases Worldwide'
+        title=f'HPV cases worldwide in {selected_year}'
     )
     
     cases_map = alt.vconcat(background+chart_case

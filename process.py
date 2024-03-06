@@ -222,7 +222,7 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 #map_background
 
 from map import return_world_map, return_income_map
-cases_map = return_world_map(df4)
+cases_map = return_world_map(df4,year)
 income_map = return_income_map(df4)
 st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(cases_map, use_container_width=True)
