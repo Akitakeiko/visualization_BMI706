@@ -63,10 +63,10 @@ st.write('## HPV dashboard')
 st.write('### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
 
 # Slider for year
-year= st.slider('year', 2010, 2010, 2020)
+year= st.slider('Year', 2010, 2020, 2010)
 subset = df3[df3["year"] == year]
 
-countries_default = [
+default_countries = [
     "Austria",
     "United Kingdom",
     "Brazil",
@@ -75,9 +75,10 @@ countries_default = [
     "United States",
     "Iceland",
 ]
-countries_name =  df["country_name"].unique()
-countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
-subset = subset[subset["country_name"].isin(countries)]
+
+available_countries = df["country_name"].unique()
+selected_countries = st.multiselect("Select Countries", options=available_countries, default=default_countries) 
+subset = subset[subset["country_name"].isin(selected_countries)]
 
 from map import return_world_map, return_income_map
 cases_map = return_world_map(df4,year)
