@@ -224,6 +224,6 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 from map import return_world_map
 HPV_cases_map = return_world_map(subset, df4, year)
 
-
+HPV_cases_map
 
 
