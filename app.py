@@ -14,6 +14,16 @@ st.write("## Temporal HPV cases and cohort sizes by Countries")
 year = st.slider("Year", min_value=2010, max_value=2030, value=2021)
 subset = df[df["year"] == year]
 
+
+countries_default = [
+    "Austria",
+    "Germany",
+    "Iceland",
+    "Spain",
+    "Sweden",
+    "Thailand",
+    "Turkey",
+]
 countries_df =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_df, default = countries_default)
 subset = subset[subset["country_name"].isin(countries)]
