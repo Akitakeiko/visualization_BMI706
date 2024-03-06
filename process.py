@@ -12,8 +12,8 @@ from vega_datasets import data
 
 # }}
 
-from data_clean import combined_df, hpv_df, cohort_df, country_df
-df = combined_df()
+from data_clean import vaccine_df, hpv_df, cohort_df, country_df
+df = vaccine_df()
 df2 = hpv_df()
 df3 = cohort_df() 
 df4 = country_df()

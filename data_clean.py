@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-def combined_df():
+def vaccine_df():
     df = pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGTM3EES2DYLQGU3BA4ZPI3XWQ', index_col = 0)
     return df
 
