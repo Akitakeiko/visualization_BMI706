@@ -5,23 +5,17 @@ import streamlit as st
 import os
 
 
-@st.cache_data
-def load_data():
-    df = pd.read_csv('/Users/akitakeiko/visualization_BMI706/data/combined_dfall.csv', index_col = 0)
-    return df
+from data_clean import combined_df
+df = combined_df()
 
 
-
-df = load_data()
-
-alt.data_transformers.disable_max_rows(); 
-
-#st.set_page_config(
-    #layout="wide",
-	#initial_sidebar_state = "auto", 
-	#page_title = "HPV dashboard",
-    #page_icon = 'img/hpv.png'
-#)
+## Streamlit configurations
+st.set_page_config(
+    layout="wide",
+	initial_sidebar_state = "auto", 
+	page_title = "HPV dashboard",
+    page_icon = 'img/hpv.png'
+)
 
 st.write("## Temporal HPV cases and cohort sizes by Countries")
 year = st.slider("Year", min_value=2010, max_value=2030, value=2021)
