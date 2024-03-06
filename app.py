@@ -27,3 +27,7 @@ countries_default = [
 countries_df =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_df, default = countries_default)
 subset = subset[subset["country_name"].isin(countries)]
+
+income_df = df["income_group"].unique()
+income = st.selectbox("income_group", options=income_df, index=income_df.tolist().index("Low income"))
+subset = subset[subset["income_group"] == income]
