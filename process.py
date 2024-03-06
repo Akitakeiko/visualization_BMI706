@@ -20,6 +20,14 @@ df4 = country_df()
 
 csv = df3.to_csv(index=False)  # Set index=False if you don't want the index in the CSV
 
+# create image for the website
+st.set_page_config(
+    layout="wide",
+	initial_sidebar_state = "auto", 
+	page_title = "HPV dashboard",
+    page_icon = '/Users/akitakeiko/visualization_BMI706/img/hpv.png'
+)
+
 # Create download button
 st.download_button(
     label="Press to Download",
@@ -49,12 +57,6 @@ df3['normalized_cases'] = df3.apply(lambda row:
                                      else row['case_per_100k']))),
                                      axis=1)
 
-st.set_page_config(
-    layout="wide",
-	initial_sidebar_state = "auto", 
-	page_title = "HPV dashboard",
-    page_icon = '/Users/akitakeiko/visualization_BMI706/img/hpv.png'
-)
 
 # Project title description
 st.write('## HPV dashboard')
