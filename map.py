@@ -28,7 +28,7 @@ def return_income_map(df_cleaned):
         from_=alt.LookupData(df_cleaned, "country-code", ['Country', 'income_group']),
     )
 
-    income_group = alt.Color('income_group:N',type='nominal')
+    income_group = alt.Color('income_group:N',type='nominal', scale=alt.Scale(scheme='viridis'))
 
 
     chart_rate = chart_base.mark_geoshape().encode(
