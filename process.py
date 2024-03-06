@@ -152,11 +152,9 @@ stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
 ).properties(
     width=600,
     height=400,
-    title='Yearly Comparison of Current and Project Cost'
+    title='Yearly Comparison of Current and Projected Cost'
 )
 
-
-st.write("# Yearly Comparison of Current and Project Cost")
 st.altair_chart(stacked_bar_chart, use_container_width=True)
 # user input for filtering
 selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
