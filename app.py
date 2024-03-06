@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import os
+from vega_datasets import data
 
 
 from data_clean import combined_df, hpv_df
