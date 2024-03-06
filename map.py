@@ -8,14 +8,34 @@ width = 400
 height  = 200
 project = 'equirectangular'
 
-map_background = alt.Chart(source
-).mark_geoshape(
-    fill = '#aaa',
-    stroke = 'white'
-).properties(
-    width = width,
-    height = height
-).project(project)
+def return_temporal_map(data_subset, data_full, selected_year):
+    if (data_subset.shape[0] == 0):
+        return map_background.properties(title=f'HPV cases worldwide in {selected_year}')
 
-map_background
+    chart_base_map = alt.Chart(source
+        ).properties( 
+            width = width,
+            height = height
+        ).project(project
+        ).transform_lookup(
+            lookup = 'id',
+            from_ = alt.LookupData(data_subset, 'country-code', ['country_name','year','possible_cancer_cases']),
+        )
+
+    cases_scale = alt.Scale(domain=[data_full['possible_cancer_cases'].min(), data_full['possible_cancer_cases'].max()], type = 'log') #we want the domain to stay the same regardless of subset
+    cases_color = alt.Color(field = 'possible_cancer_cases', type = 'quantitative', scale = cases_scale)
+    chart_cases = chart_base_map.mark_geoshape().encode(
+        color = cases_color,
+        tooltip = ['country_name:N', 'possible_cancer_cases:Q']
+        ).properties(
+        title=f'HPV cases worldwide in {selected_year}'
+    )
+
+    chart_cases_map = alt.vconcat(map_background + chart_cases
+    ).resolve_scale(
+        color = 'independent'
+    )
+
+    return chart_cases_map
+
 
