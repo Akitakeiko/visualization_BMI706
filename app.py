@@ -59,19 +59,14 @@ stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
     title='Yearly Comparison of Current and Project Cost'
 )
 
-# Display the chart in the Streamlit app
+
 st.write("# Yearly Comparison of Current and Project Cost")
 st.altair_chart(stacked_bar_chart, use_container_width=True)
-
-
-# User input for filtering
+# user input for filtering
 selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
-
 # Filter data based on selection
 filtered_df = df2[df2['assumption_type'] == selected_assumption]
-
-
-# Create the stacked bar chart
+# stacked bar chart for visualization
 stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
     x='year:N',  # Year is nominal data
     y=alt.Y('sum(value):Q', stack='zero'),  # Stack the values of cancer_prevented and deaths_prevented
@@ -81,6 +76,6 @@ stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
     title='Comparison of Cancer Prevented and Deaths Prevented by Year'
 )
 
-# Display the chart in the Streamlit app
+# display the chart 
 st.title('Cancer/death Data Visualization')
 st.altair_chart(stacked_bar_chart, use_container_width=True)
