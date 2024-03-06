@@ -12,10 +12,11 @@ from vega_datasets import data
 
 # }}
 
-from data_clean import combined_df, hpv_df, cohort_df
+from data_clean import combined_df, hpv_df, cohort_df, country_df
 df = combined_df()
 df2 = hpv_df()
 df3 = cohort_df() 
+df4 = country_df()
 
 
 df3['death_per_100k'] = (df3['possible_cancer_deaths'] / df3['cohort_size']) * 100000
@@ -221,7 +222,7 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 #map_background
 
 from map import return_world_map
-HPV_cases_map = return_world_map(country, hiv_df_long, year)
+HPV_cases_map = return_world_map(df4, subset, year)
 
 
 
