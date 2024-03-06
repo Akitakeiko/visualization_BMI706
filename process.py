@@ -148,32 +148,19 @@ income2
 # Task 3
 df_melted = df.melt(id_vars=['year'], value_vars=['proj_cost', 'curr_cost'], var_name='category', value_name='value')
 
-
-# Create a base chart with the shared axis
-base = alt.Chart(df).encode(
-    alt.X('year:N', axis=alt.Axis(title='Year'))
+# Create the stacked bar chart
+stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
+    x='year:N',  # N indicates nominal/categorical data
+    y=alt.Y('sum(value):Q', stack='zero', title='Total Value'),  # Stack the bars
+    color='category:N',  # Differentiate by category
+    tooltip=['year:N', 'category:N', 'sum(value):Q']
+).properties(
+    width=600,
+    height=400,
+    title='Yearly Comparison of Current and Projected Cost'
 )
 
-# Create the bar chart for current cost
-bar_current_cost = base.mark_bar(color='steelblue', opacity=0.7).encode(
-    alt.Y('curr_cost:Q', axis=alt.Axis(title='Current Cost', titleColor='steelblue'))
-)
-
-# Create the line chart for projected cost
-line_projected_cost = base.mark_line(color='firebrick').encode(
-    alt.Y('proj_cost:Q', axis=alt.Axis(title='Projected Cost', titleColor='firebrick'))
-)
-
-# Combine the charts
-chart = alt.layer(bar_current_cost, line_projected_cost).resolve_scale(
-    y='independent'
-)
-
-# Display the chart in the Streamlit app
-st.title('Comparison of Current and Projected Costs')
-st.altair_chart(chart, use_container_width=True)
-
-
+st.altair_chart(stacked_bar_chart, use_container_width=True)
 # user input for filtering
 selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
 # Filter data based on selection
