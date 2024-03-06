@@ -2,10 +2,12 @@ import altair as alt
 import pandas as pd
 import numpy as np
 import streamlit as st
+import os
+
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv('/Users/akitakeiko/visualization_BMI706/data/combined_dfall.csv', index_col = 0)
+    df = pd.read_csv('data/combined_dfall.csv', index_col = 0)
     return df
 
 
@@ -18,7 +20,7 @@ alt.data_transformers.disable_max_rows();
     #layout="wide",
 	#initial_sidebar_state = "auto", 
 	#page_title = "HPV dashboard",
-    #page_icon = '/img/hpv.png'
+    #page_icon = 'img/hpv.png'
 #)
 
 st.write("## Temporal HPV cases and cohort sizes by Countries")
