@@ -51,7 +51,7 @@ st.write('## HPV dashboard')
 st.write('### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
 
 # Slider for year
-year= st.slider('year', 2010, 2015, 2020)
+year= st.slider('year', 2010, 2010, 2020)
 subset = df3[df3["year"] == year]
 
 countries_default = [
