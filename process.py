@@ -44,8 +44,9 @@ st.set_page_config(
     page_icon = '/Users/akitakeiko/visualization_BMI706/img/hpv.png'
 )
 
-
-st.write("## final project task2")
+# Project title description
+st.write('### HPV dashboard')
+st.write('#### Explore spatial and temporal HPV cases, income group and vaccination coverage.')")
 
 # Slider for year
 year= st.slider('year', 2010, 2010, 2020)
@@ -189,7 +190,7 @@ filtered_df = df2[df2['assumption_type'] == selected_assumption]
 stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
     x='year:N',  # Year is nominal data
     y=alt.Y('sum(value):Q', stack='zero'),  # Stack the values of cancer_prevented and deaths_prevented
-    color='metric:N',  # Color by metric (cancer_prevented or deaths_prevented)
+    color=('metric:N', scale=alt.Scale(scheme='tableau10')),  # Color by metric (cancer_prevented or deaths_prevented)
     tooltip=['year:N', 'region:N', 'income_group:N', 'metric:N', 'sum(value):Q']
 ).properties(
     title='Comparison of Cancer Prevented and Deaths Prevented by Year'
