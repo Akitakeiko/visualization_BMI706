@@ -46,6 +46,19 @@ st.write("## final project task2")
 year= st.slider('year', 2010, 2010, 2020)
 subset = df3[df3["year"] == year]
 
+countries_default = [
+    "Austria",
+    "United Kingdom",
+    "Brazil",
+    "Spain",
+    "China",
+    "United States",
+    "Iceland",
+]
+countries_df =  df["country_name"].unique()
+countries = st.multiselect("Countries", options = countries_df, default = countries_default)
+subset = subset[subset["country_name"].isin(countries)]
+
 # Create a heatmap instead of a bar chart
 pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_deaths):Q',
