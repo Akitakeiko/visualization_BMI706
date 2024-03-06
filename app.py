@@ -7,10 +7,7 @@ import os
 
 from data_clean import combined_df
 df = combined_df()
-
-@st.cache_data
-
-df2 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/hpv_past_results.csv", index_col = 0)df
+df2 = hpv_df()
 
 
 
