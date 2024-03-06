@@ -70,10 +70,10 @@ subset = subset[subset["country_name"].isin(countries)]
 from map import return_world_map, return_income_map, test_map
 cases_map = return_world_map(df4,year)
 income_map = return_income_map(df4)
-test_map() = test_map(df4)
+tested_map = test_map(df4)
 st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(cases_map, use_container_width=True)
-st.altair_chart(test_map, use_container_width=True)
+st.altair_chart(tested_map, use_container_width=True)
 
 bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     x=alt.Y('sum(cohort_size):Q', title='Sum of cohort size'),
