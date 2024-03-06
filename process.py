@@ -31,7 +31,7 @@ countries_default = [
 ]
 countries_df =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_df, default = countries_default)
-subset = subset[subset["country_name"].isin(countries)]
+country_subset = subset[subset["country_name"].isin(countries)]
 
 
 df3['death_per_100k'] = (df3['possible_cancer_deaths'] / df3['cohort_size']) * 100000
