@@ -10,6 +10,18 @@ import os
 
 
 # }}
+countries_default = [
+    "Austria",
+    "United Kingdom",
+    "Brazil",
+    "Spain",
+    "China",
+    "United States",
+    "Iceland",
+]
+countries_df =  df["country_name"].unique()
+countries = st.multiselect("Countries", options = countries_df, default = countries_default)
+subset = subset[subset["country_name"].isin(countries)]
 
 
 from data_clean import combined_df, hpv_df, cohort_df
