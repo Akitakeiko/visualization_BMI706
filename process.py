@@ -225,6 +225,6 @@ from map import return_world_map, return_income_map
 cases_map = return_world_map(df4)
 income_map = return_income_map(df4)
 st.altair_chart(income_map, use_container_width=True)
-st.altair_chart(HPV_cases_map, use_container_width=True)
+st.altair_chart(cases_map, use_container_width=True)
 
 
