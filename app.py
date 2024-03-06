@@ -42,3 +42,5 @@ income = st.selectbox("Income Group", options=income_df, index=income_df.tolist(
 subset = subset[subset["income_group"] == income]
 
 
+
+
