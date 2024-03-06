@@ -24,5 +24,4 @@ def cohort_df():
 
 def country_df():
     df4 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/country-code_cohort.csv")
-    df4_filtered = df4[df4['income_group'] != 'null']
-    return df4_filtered
+    return df4

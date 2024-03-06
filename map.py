@@ -18,6 +18,7 @@ background = alt.Chart(source
 ).project(project)
 
 def return_income_map(df_cleaned):
+    df_cleaned = df_cleaned[df_cleaned['income_group'] != 'null']
     chart_base = alt.Chart(source
     ).properties(
         width=600,
