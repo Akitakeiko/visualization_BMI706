@@ -68,18 +68,19 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
 
 # Filter data based on selection
-filtered_data = df2[df2['assumption_type'] == selected_assumption]
+filtered_df = df2[df2['assumption_type'] == selected_assumption]
+df_melted = filtered_df.melt(id_vars=['year', 'region', 'income_group'], value_vars=['cancer_prevented', 'deaths_prevented'], var_name='metric', value_name='value')
 
-# Define the chart
-chart = alt.Chart(filtered_data).mark_bar().encode(
-    x='region:N',
-    y='coverage:Q',
-    color='income_group:N',
-    column='year:N',
-    tooltip=['region', 'income_group', 'year', 'coverage', 'cancer_prevented', 'deaths_prevented']
+# Create the stacked bar chart
+stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
+    x='year:N',  # Year is nominal data
+    y=alt.Y('sum(value):Q', stack='zero'),  # Stack the values of cancer_prevented and deaths_prevented
+    color='metric:N',  # Color by metric (cancer_prevented or deaths_prevented)
+    tooltip=['year:N', 'region:N', 'income_group:N', 'metric:N', 'sum(value):Q']
 ).properties(
-    title=f'Health Coverage and Outcomes by Region and Income Group ({selected_assumption})'
+    title='Comparison of Cancer Prevented and Deaths Prevented by Year'
 )
 
-# Display the chart
-st.altair_chart(chart, use_container_width=True)
+# Display the chart in the Streamlit app
+st.title('Cancer/death Data Visualization')
+st.altair_chart(stacked_bar_chart, use_container_width=True)
