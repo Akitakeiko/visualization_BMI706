@@ -43,7 +43,7 @@ nearest = alt.selection(type='single', nearest=True, on='mouseover',
                         fields=['year'], empty='none')
 
 # Task 3
-df_melted = df.melt(id_vars=['year'], value_vars=['current_cov', 'curr_cost'], var_name='category', value_name='value')
+df_melted = df.melt(id_vars=['year'], value_vars=['proj_cost', 'curr_cost'], var_name='category', value_name='value')
 
 # Create the stacked bar chart
 stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
@@ -54,9 +54,9 @@ stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
 ).properties(
     width=600,
     height=400,
-    title='Yearly Comparison of Current Coverage and Cost'
+    title='Yearly Comparison of Current and Projection Cost'
 )
 
 # Display the chart in the Streamlit app
-st.write("# Yearly Comparison of Current Coverage and Cost")
+st.write("# Yearly Comparison of Current and Projection Cost")
 st.altair_chart(stacked_bar_chart, use_container_width=True)
