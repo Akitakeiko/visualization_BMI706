@@ -11,5 +11,5 @@ def load_data():
 df = load_data()
 
 st.write("## Temporal HPV cases and cohort sizes by Countries")
-year = st.slider("Year", min_value=1994, max_value=2020, value=2012)
-
+year = st.slider("Year", min_value=2010, max_value=2030, value=2021)
+subset = df[df["Year"] == year]
