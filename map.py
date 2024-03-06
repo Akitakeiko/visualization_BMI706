@@ -49,7 +49,7 @@ def return_income_map(df_cleaned):
              
     return income_map
 
-def return_world_map(df_cleaned):
+def return_world_map(df_cleaned, year):
     if (data_subset.shape[0] == 0):
         return map_background.properties(title=f'HPV cases worldwide in {selected_year}')
 
