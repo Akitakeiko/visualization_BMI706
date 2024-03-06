@@ -37,17 +37,15 @@ df3['normalized_cases'] = df3.apply(lambda row:
                                      else row['case_per_100k']))),
                                      axis=1)
 
-
-
-
-st.write("## final project task2")
-
 st.set_page_config(
     layout="wide",
 	initial_sidebar_state = "auto", 
 	page_title = "HPV dashboard",
     page_icon = '/Users/akitakeiko/visualization_BMI706/img/hpv.png'
 )
+
+
+st.write("## final project task2")
 
 # Slider for year
 year= st.slider('year', 2010, 2010, 2020)
