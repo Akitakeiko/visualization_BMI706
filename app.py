@@ -5,8 +5,11 @@ import streamlit as st
 
 @st.cache_data
 def load_data():
-    mixed_df= pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGS4LMCJZZR5KPR3TH6ZPHXDOQ', index_col = 0)
-    return mixed_df
+    combined_df= pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGSHQQGSCNSFILX42HUZPHZWIA', index_col = 0)
+    return combined_df
 
 df = load_data()
-st.write("## Age-specific cancer mortality rates")
+
+st.write("## Temporal HPV cases and cohort sizes by Countries")
+year = st.slider("Year", min_value=1994, max_value=2020, value=2012)
+
