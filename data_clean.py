@@ -18,3 +18,6 @@ def hpv_df():
     df2 = pd.concat([hpv_past_melted, hpv_2020_melted])
     return df2
 
+def cohort_df():
+    df3 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/combined_cohort.csv")
+    return df3

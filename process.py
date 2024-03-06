@@ -12,10 +12,10 @@ import os
 # }}
 
 
-from data_clean import combined_df, hpv_df
+from data_clean import combined_df, hpv_df, cohort_df
 df = combined_df()
 df2 = hpv_df()
-df3= pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/combined_cohort.csv")
+df3 = cohort_df() 
 
 df3['death_per_100k'] = (df3['possible_cancer_deaths'] / df3['cohort_size']) * 100000
 df3['case_per_100k'] = (df3['possible_cancer_cases'] / df3['cohort_size']) * 100000
@@ -130,25 +130,7 @@ income1
 income2
 
 
-st.write("# Yearly Comparison of Current and Project Cost")
-st.altair_chart(stacked_bar_chart, use_container_width=True)
-# user input for filtering
-selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
-# Filter data based on selection
-filtered_df = df2[df2['assumption_type'] == selected_assumption]
-# stacked bar chart for visualization
-stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
-    x='year:N',  # Year is nominal data
-    y=alt.Y('sum(value):Q', stack='zero'),  # Stack the values of cancer_prevented and deaths_prevented
-    color='metric:N',  # Color by metric (cancer_prevented or deaths_prevented)
-    tooltip=['year:N', 'region:N', 'income_group:N', 'metric:N', 'sum(value):Q']
-).properties(
-    title='Comparison of Cancer Prevented and Deaths Prevented by Year'
-)
 
-# display the chart 
-st.title('Cancer/death Data Visualization')
-st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 
 
