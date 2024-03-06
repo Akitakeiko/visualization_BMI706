@@ -16,10 +16,6 @@ df = combined_df()
 df2 = hpv_df()
 df3 = cohort_df() 
 
-# Slider for year
-year= st.slider('year', 2010, 2010, 2020)
-subset = df3[df3["year"] == year]
-# country multiselection
 
 df3['death_per_100k'] = (df3['possible_cancer_deaths'] / df3['cohort_size']) * 100000
 df3['case_per_100k'] = (df3['possible_cancer_cases'] / df3['cohort_size']) * 100000
@@ -46,7 +42,9 @@ df3['normalized_cases'] = df3.apply(lambda row:
 
 st.write("## final project task2")
 
-
+# Slider for year
+year= st.slider('year', 2010, 2010, 2020)
+subset = df3[df3["year"] == year]
 
 # Create a heatmap instead of a bar chart
 pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
