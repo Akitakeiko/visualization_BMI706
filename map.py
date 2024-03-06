@@ -57,15 +57,15 @@ def return_world_map(df_cleaned, selected_year):
         ).project(project
         ).transform_lookup(
             lookup = 'id',
-            from_ = alt.LookupData(df_cleaned, 'country-code', ['Country','year','possible_cancer_cases']),
+            from_ = alt.LookupData(df_cleaned, 'country-code', ['Country','year','cohort_size']),
         )
 
-    cases_scale = alt.Scale(domain=[df_cleaned['possible_cancer_cases'].min(), df_cleaned['possible_cancer_cases'].max()],  
+    cases_scale = alt.Scale(domain=[df_cleaned['cohort_size'].min(), df_cleaned['cohort_size'].max()],  
                             scheme='oranges') 
-    cases_color = alt.Color(field = 'possible_cancer_cases:Q', type = 'quantitative', scale = cases_scale)
+    cases_color = alt.Color(field = 'cohort_size:Q', type = 'quantitative', scale = cases_scale)
     chart_cases = chart_base_map.mark_geoshape().encode(
         color = cases_color,
-        tooltip = ['Country:N', 'possible_cancer_cases:Q']
+        tooltip = ['Country:N', 'cohort_size:Q']
         ).properties(
         title=f'HPV cases worldwide in {selected_year}'
     )
