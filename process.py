@@ -3,6 +3,7 @@ import pandas as pd
 import streamlit as st
 import os
 import numpy as np
+from vega_datasets import data
 
 ### P1.2 ###
 
@@ -190,7 +191,7 @@ filtered_df = df2[df2['assumption_type'] == selected_assumption]
 stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
     x='year:N',  # Year is nominal data
     y=alt.Y('sum(value):Q', stack='zero'),  # Stack the values of cancer_prevented and deaths_prevented
-    color=alt.Color('metric:N', scale=alt.Scale(scheme='set2')),  # Color by metric (cancer_prevented or deaths_prevented)
+    color=alt.Color('metric:N', scale=alt.Scale(scheme='tab10')),  # Color by metric (cancer_prevented or deaths_prevented)
     tooltip=['year:N', 'region:N', 'income_group:N', 'metric:N', 'sum(value):Q']
 ).properties(
     title='Comparison of Cancer Prevented and Deaths Prevented by Year'
