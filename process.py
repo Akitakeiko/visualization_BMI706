@@ -102,25 +102,41 @@ chart = alt.Chart(df3).mark_bar().encode(
 chart
 
 
-upper = alt.Chart(df3).mark_line(point=True,color='green').encode(
+df3 = df3.dropna(subset=['cohort_size'])
+
+
+
+
+incomegroup = st.radio("Select Income group for trend line", ('Low income', 'Lower middle income','Upper middle income','High income'))
+subset = df3[df3["income_group"] == incomegroup]
+
+
+
+
+income1 = alt.Chart(subset).mark_line(point=True,color='blue').encode(
     x=alt.X('year:O', axis=alt.Axis(title='Year')),
-    y=alt.Y('sum(possible_cancer_deaths):Q', axis=alt.Axis(title='Total Cancer Deaths')),
-    tooltip=['year:O', alt.Tooltip('sum(possible_cancer_deaths):Q', title='Total Deaths')]
+    y=alt.Y('sum(death_per_100k):Q', axis=alt.Axis(title='death_per_100k')),
+    tooltip=['year:O', alt.Tooltip('sum(death_per_100k):Q', title='Total Deaths')]
 ).properties(
+    title= "Trend of death per 100k per income group",
     width=700,
     height=250
 )
 
-cases_chart = alt.Chart(df3).mark_line(point=True, color='red').encode(
-    x='year:O',
-    y=alt.Y('sum(possible_cancer_cases):Q', axis=alt.Axis(title='Total Cases')),
-    tooltip=['year:O', alt.Tooltip('sum(possible_cancer_cases):Q', title='Total Cases')]
+income2 = alt.Chart(subset).mark_line(point=True,color='green').encode(
+    x=alt.X('year:O', axis=alt.Axis(title='Year')),
+    y=alt.Y('sum(case_per_100k):Q', axis=alt.Axis(title='death_per_100k')),
+    tooltip=['year:O', alt.Tooltip('sum(case_per_100k):Q', title='Total Deaths')]
+).properties(
+    title= "Trend of case per 100k per income group",
+    width=700,
+    height=250
 )
 
-# Overlay the cases chart on top of the deaths chart
-combined_chart = upper + cases_chart
+income1
+income2
 
-combined_chart
+
 
 
 
