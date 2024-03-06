@@ -5,7 +5,7 @@ import streamlit as st
 import os
 
 
-from data_clean import combined_df
+from data_clean import combined_df, hpv_df
 df = combined_df()
 df2 = hpv_df()
 
