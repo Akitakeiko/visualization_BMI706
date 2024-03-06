@@ -39,6 +39,31 @@ income_df = df["income_group"].unique()
 income = st.selectbox("Income Group", options=income_df, index=income_df.tolist().index("Low income"))
 subset = subset[subset["income_group"] == income]
 
+nearest = alt.selection(type='single', nearest=True, on='mouseover',
+                        fields=['Year'], empty='none')
 
+# The basic line
+line_cov = alt.Chart(data).mark_bar().encode(
+    x='Year:O',
+    y='current_cov:Q',
+    color=alt.value('steelblue')  # Bar color
+).add_selection(
+    nearest
+)
+
+line_cost = alt.Chart(data).mark_bar().encode(
+    x='Year:O',
+    y='curr_cost:Q',
+    color=alt.value('firebrick')  # Bar color
+).add_selection(
+    nearest
+)
+
+# Combine the charts
+chart = alt.layer(line_cov, line_cost).resolve_scale(
+    y='independent'
+)
+
+st.altair_chart(chart, use_container_width=True)
 
 
