@@ -64,13 +64,13 @@ countries_df =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_df, default = countries_default)
 subset = subset[subset["country_name"].isin(countries)]
 
-bar_chart = alt.Chart(subset).mark_bar().encode(
+bar_chart_cohort = alt.Chart(subset).mark_bar().encode(
     x=alt.Y('sum(cohort_size):Q', title='Sum of cohort size'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
     tooltip=['country_name', 'sum(cohort_size)']
 )
 
-bar_chart
+st.altair_chart(bar_chart_cohort, use_container_width=True)
 
 # Create a piechart 
 pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
