@@ -78,7 +78,7 @@ def return_world_map(df_cleaned, selected_year):
 
 
 
-def return_world_map(df_cleaned, selected_year, width=500, height=300):
+def return_world_map(df_cleaned, selected_year):
     # Filter data for the selected year
     df_year = df_cleaned[df_cleaned['year'] == selected_year]
 
