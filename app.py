@@ -67,10 +67,10 @@ Year = [
 
 selection = alt.selection_multi(fields=['Year'], bind='legend')
 
-curr_vacc_cohort_chart = alt.Chart(df).mark_bar().encode(
-    x=alt.X('year:O', axis=alt.Axis(title='Year')),
-    y=alt.Y('curr_vacc_cohort_size:Q', axis=alt.Axis(title='Current vaccine cohort')),
-    tooltip=['year', 'curr_vacc_cohort_size']
+#curr_vacc_cohort_chart = alt.Chart(df).mark_bar().encode(
+#    x=alt.X('year:O', axis=alt.Axis(title='Year')),
+#    y=alt.Y('curr_vacc_cohort_size:Q', axis=alt.Axis(title='Current vaccine cohort')),
+#    tooltip=['year', 'curr_vacc_cohort_size']
 )
 
-st.altair_chart(curr_vacc_cohort_chart, use_container_width=True)
+#st.altair_chart(curr_vacc_cohort_chart, use_container_width=True)
