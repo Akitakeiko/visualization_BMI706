@@ -14,15 +14,15 @@ import os
 
 @st.cache
 def load_data():
-    df = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGSI6BPZBCW5EFDC2OIZPIB4IA.csv")
+    df = pd.read_csv('/Users/akitakeiko/visualization_BMI706/data/combined_dfall.csv', index_col = 0)
     
     return df
 
 
 
 df = load_data()
-df2= pd.read_csv("hpv_past_results.csv")
-df3= pd.read_csv("combined_cohort.csv")
+df2= pd.read_csv("/Users/akitakeiko/visualization_BMI706/datahpv_past_results.csv")
+df3= pd.read_csv("/Users/akitakeiko/visualization_BMI706/datacombined_cohort.csv")
 
 df3['death_per_100k'] = (df3['possible_cancer_deaths'] / df3['cohort_size']) * 100000
 df3['case_per_100k'] = (df3['possible_cancer_cases'] / df3['cohort_size']) * 100000
