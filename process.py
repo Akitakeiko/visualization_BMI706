@@ -45,8 +45,8 @@ st.set_page_config(
 )
 
 # Project title description
-st.write('### HPV dashboard')
-st.write('#### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
+st.write('## HPV dashboard')
+st.write('### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
 
 # Slider for year
 year= st.slider('year', 2010, 2010, 2020)
@@ -81,7 +81,7 @@ bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
     title='Possible HPV Cancer Cases by Country'
 )
 
-st.write("## HPV cases vs. cohort sizes")
+st.write("### HPV cases vs. cohort sizes")
 st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
 
@@ -190,7 +190,7 @@ filtered_df = df2[df2['assumption_type'] == selected_assumption]
 stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
     x='year:N',  # Year is nominal data
     y=alt.Y('sum(value):Q', stack='zero'),  # Stack the values of cancer_prevented and deaths_prevented
-    color=alt.Color('metric:N', scale=alt.Scale(scheme='tableau10')),  # Color by metric (cancer_prevented or deaths_prevented)
+    color=alt.Color('metric:N', scale=alt.Scale(scheme='set2')),  # Color by metric (cancer_prevented or deaths_prevented)
     tooltip=['year:N', 'region:N', 'income_group:N', 'metric:N', 'sum(value):Q']
 ).properties(
     title='Comparison of Cancer Prevented and Deaths Prevented by Year'
