@@ -79,3 +79,19 @@ stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
 # display the chart 
 st.title('Cancer/death Data Visualization')
 st.altair_chart(stacked_bar_chart, use_container_width=True)
+
+## Set up basic world map as template backgorund
+source = alt.topo_feature(data.world_110m.url, 'countries')
+
+width = 400
+height  = 200
+project = 'equirectangular'
+
+map_background = alt.Chart(source
+).mark_geoshape(
+    fill = '#aaa',
+    stroke = 'white'
+).properties(
+    width = width,
+    height = height
+).project(project)
