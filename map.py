@@ -8,7 +8,7 @@ width = 400
 height  = 200
 project = 'equirectangular'
 
-def return_temporal_map(data_subset, data_full, selected_year):
+def return_world_map(data_subset, data_full, selected_year):
     if (data_subset.shape[0] == 0):
         return map_background.properties(title=f'HPV cases worldwide in {selected_year}')
 
@@ -31,11 +31,11 @@ def return_temporal_map(data_subset, data_full, selected_year):
         title=f'HPV cases worldwide in {selected_year}'
     )
 
-    chart_cases_map = alt.vconcat(map_background + chart_cases
+    HPV_cases_map = alt.vconcat(map_background + chart_cases
     ).resolve_scale(
         color = 'independent'
     )
 
-    return chart_cases_map
+    return HPV_cases_map
 
 

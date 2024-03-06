@@ -21,3 +21,7 @@ def hpv_df():
 def cohort_df():
     df3 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/combined_cohort.csv")
     return df3
+
+def country_df():
+    df4 = pd.read_csv("/Users/akitakeiko/visualization_BMI706/data/country-code cohort.csv")
+    return df3

@@ -203,23 +203,25 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 
 
-source = alt.topo_feature(data.world_110m.url, 'countries')
+#source = alt.topo_feature(data.world_110m.url, 'countries')
 
-width = 400
-height  = 200
-project = 'equirectangular'
+#width = 400
+#height  = 200
+#project = 'equirectangular'
 
-map_background = alt.Chart(source
-).mark_geoshape(
-    fill = '#aaa',
-    stroke = 'white'
-).properties(
-    width = width,
-    height = height
-).project(project)
+#map_background = alt.Chart(source
+#).mark_geoshape(
+#    fill = '#aaa',
+#    stroke = 'white'
+#).properties(
+#    width = width,
+#    height = height
+#).project(project)
 
-map_background
+#map_background
 
+from map import return_world_map
+HPV_cases_map = return_world_map(country, hiv_df_long, year)
 
 
 
