@@ -14,7 +14,7 @@ df = load_data()
 
 alt.data_transformers.disable_max_rows(); 
 
-st.set_page_config(
+@st.set_page_config(
     layout="wide",
 	initial_sidebar_state = "auto", 
 	page_title = "HPV dashboard",
