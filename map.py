@@ -51,7 +51,7 @@ def return_income_map(df_cleaned):
 
 def return_world_map(df_cleaned, year):
     if (df_cleaned.shape[0] == 0):
-        return map_background.properties(title=f'HPV cases worldwide in {selected_year}')
+        return map_background.properties(title=f'HPV cases worldwide in {year}')
 
     chart_base_map = alt.Chart(source
         ).properties( 
@@ -69,7 +69,7 @@ def return_world_map(df_cleaned, year):
         color = cases_color,
         tooltip = ['Country:N', 'possible_cancer_cases:Q']
         ).properties(
-        title=f'HPV cases worldwide in {selected_year}'
+        title=f'HPV cases worldwide in {year}'
     )
 
     HPV_cases_map = alt.vconcat(background + chart_cases
