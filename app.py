@@ -6,7 +6,7 @@ import streamlit as st
 @st.cache_data
 def load_data()
     mixed_df= pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGS4LMCJZZR5KPR3TH6ZPHXDOQ', index_col = 0)
-    return df
+    return mixed_df
 
 df = load_data()
 st.write("## Age-specific cancer mortality rates")
