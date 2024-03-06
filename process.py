@@ -70,7 +70,15 @@ bar_chart_cohort = alt.Chart(subset).mark_bar().encode(
     tooltip=['country_name', 'sum(cohort_size)']
 )
 
+bar_chart_cases = alt.Chart(subset).mark_bar().encode(
+    x=alt.Y('sum(possible_cancer_cases):Q', title='Sum of HPV cases'),
+    y=alt.X('country_name:N', title='Country', sort='-x'),
+    tooltip=['country_name', 'sum(possible_cancer_cases)']
+)
+
+st.write("## HPV cases vs. cohort sizes")
 st.altair_chart(bar_chart_cohort, use_container_width=True)
+st.altair_chart(bar_chart_cases, use_container_width=True)
 
 # Create a piechart 
 pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
