@@ -12,7 +12,7 @@ import os
 # }}
 
 
-@st.cache
+@st.cache_data
 def load_data():
     df = pd.read_csv('/Users/akitakeiko/visualization_BMI706/data/combined_dfall.csv', index_col = 0)
     
