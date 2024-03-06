@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
-## Streamlit configurations
+
 st.set_page_config(
     layout="wide",
 	initial_sidebar_state = "auto", 
@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 
-@st.cache_data
+st.cache_data
 def load_data():
     combined_df= pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv?token=GHSAT0AAAAAACOCXHGSHQQGSCNSFILX42HUZPHZWIA', index_col = 0)
     return combined_df
