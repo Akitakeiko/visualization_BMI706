@@ -97,4 +97,3 @@ map_background = alt.Chart(source
     height = height
 ).project(project)
 
-
