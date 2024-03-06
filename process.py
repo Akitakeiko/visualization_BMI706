@@ -10,6 +10,13 @@ import os
 
 
 # }}
+
+from data_clean import combined_df, hpv_df, cohort_df
+df = combined_df()
+df2 = hpv_df()
+df3 = cohort_df() 
+
+
 countries_default = [
     "Austria",
     "United Kingdom",
@@ -23,11 +30,6 @@ countries_df =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_df, default = countries_default)
 subset = subset[subset["country_name"].isin(countries)]
 
-
-from data_clean import combined_df, hpv_df, cohort_df
-df = combined_df()
-df2 = hpv_df()
-df3 = cohort_df() 
 
 df3['death_per_100k'] = (df3['possible_cancer_deaths'] / df3['cohort_size']) * 100000
 df3['case_per_100k'] = (df3['possible_cancer_cases'] / df3['cohort_size']) * 100000
