@@ -150,7 +150,7 @@ df_melted = df.melt(id_vars=['year'], value_vars=['proj_cost', 'curr_cost'], var
 
 
 # Create a base chart with the shared axis
-base = alt.Chart(df_melted).encode(
+base = alt.Chart(df).encode(
     alt.X('year:N', axis=alt.Axis(title='Year'))
 )
 
@@ -172,6 +172,7 @@ chart = alt.layer(bar_current_cost, line_projected_cost).resolve_scale(
 # Display the chart in the Streamlit app
 st.title('Comparison of Current and Projected Costs')
 st.altair_chart(chart, use_container_width=True)
+
 
 # user input for filtering
 selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
