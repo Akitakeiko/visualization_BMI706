@@ -63,7 +63,7 @@ background = alt.Chart(source
     height=300
 ).project(project)
 
-def return_income_map(data):
+def return_income_map(df_cleaned):
     chart_base = alt.Chart(source
     ).properties(
         width=600,
