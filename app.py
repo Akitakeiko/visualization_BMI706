@@ -181,11 +181,11 @@ income2 = alt.Chart(subset3).mark_line(point=True,color='green').encode(
 )
 
 st.write("### Linking HPV-induced cervical cancer cases/deaths to income group")
-st.altair_chart(chart, use_container_width=True)
-st.altair_chart(donut, use_container_width=True)
+st.altair_chart(chart)
+st.altair_chart(donut)
 st.altair_chart(income_map, use_container_width=True)
-st.altair_chart(income1, use_container_width=True)
-st.altair_chart(income2, use_container_width=True)
+st.altair_chart(income1)
+st.altair_chart(income2)
 
 df_melted = df.melt(id_vars=['year'], value_vars=['proj_cost', 'curr_cost'], var_name='category', value_name='value')
 
