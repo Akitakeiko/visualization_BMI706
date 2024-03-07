@@ -80,11 +80,13 @@ countries_default = [
 countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
+subset4 = df4[df4["year"] == year]
+subset4 = subset4[subset4["country_name"].isin(countries)]
 
 
 from map import return_world_map, return_income_map
-cases_map = return_world_map(df4,year)
-income_map = return_income_map(df4)
+cases_map = return_world_map(subset4,year)
+income_map = return_income_map(subset4)
 
 st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(cases_map, use_container_width=True)
@@ -100,14 +102,14 @@ bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
 
 
 bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
-    x=alt.Y('sum(curr_cc_prev):Q', title='Sum of HPV caused cervical cancer cases'),
+    x=alt.Y('sum(curr_cc_prev):Q', title='Sum of HPV-induced cervical cancer cases'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
     tooltip=['country_name:N', 'sum(curr_cc_prev):Q']
 ).properties(
-    title='Possible HPV-caused cervical cancer Cases by Country'
+    title='Possible HPV-induced cervical cancer Cases by Country'
 )
 
-st.write("### HPV cases vs. cohort sizes")
+st.write("### HPV-induced cervical cancer cases vs. cohort sizes")
 st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
 

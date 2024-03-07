@@ -42,7 +42,7 @@ def return_income_map(df_cleaned):
     lookup='id',
     from_=alt.LookupData(df_cleaned, 'country-code', ['Country', 'income_group'])
     ).properties(
-    title='Income group Worldwide'
+    title='Income group Worldwide Overall'
     )
     
     income_map = alt.vconcat(background+chart_rate
