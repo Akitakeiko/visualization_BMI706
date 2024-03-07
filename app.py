@@ -53,7 +53,7 @@ df3['normalized_cases'] = df3.apply(lambda row:
 st.write('## HPV dashboard')
 st.write('### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
 
-st.write('### preview of source data')
+st.write('#### preview of source data')
 st.dataframe(df3.head(50))
 
 csv = df3.to_csv(index=False)  # Set index=False if you don't want the index in the CSV
