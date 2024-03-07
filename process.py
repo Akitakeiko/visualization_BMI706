@@ -79,6 +79,7 @@ countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
 subset3 = df3[df3["year"] == year]
+subset3 = subset[subset["country_name"].isin(countries)]
 
 
 
