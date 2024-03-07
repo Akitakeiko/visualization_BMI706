@@ -80,13 +80,11 @@ countries_default = [
 countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
-subset4 = df4[df4["year"] == year]
-subset4 = subset4[subset4["country_name"].isin(countries)]
 
 
 from map import return_world_map, return_income_map
-cases_map = return_world_map(subset4,year)
-income_map = return_income_map(subset4)
+cases_map = return_world_map(df4,year)
+income_map = return_income_map(df4)
 
 st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(cases_map, use_container_width=True)
