@@ -18,8 +18,6 @@ df2 = hpv_df()
 df3 = cohort_df() 
 df4 = country_df()
 
-csv = df3.to_csv(index=False)  # Set index=False if you don't want the index in the CSV
-
 # create image for the website
 st.set_page_config(
     layout="wide",
@@ -28,6 +26,10 @@ st.set_page_config(
     page_icon = '/Users/akitakeiko/visualization_BMI706/img/hpv.png'
 )
 
+st.write('### preview of source data')
+st.dataframe(df3.head(50))
+
+csv = df3.to_csv(index=False)  # Set index=False if you don't want the index in the CSV
 # Create download button
 st.download_button(
     label="Press to Download",
