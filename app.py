@@ -26,18 +26,6 @@ st.set_page_config(
     page_icon = '/Users/akitakeiko/visualization_BMI706/img/hpv.png'
 )
 
-st.write('### preview of source data')
-st.dataframe(df3.head(50))
-
-csv = df3.to_csv(index=False)  # Set index=False if you don't want the index in the CSV
-# Create download button
-st.download_button(
-    label="Press to Download",
-    data=csv,
-    file_name="cohort_data.csv",
-    mime="text/csv",
-    key='download-csv'
-)
 
 df3['death_per_100k'] = (df3['possible_cancer_deaths'] / df3['cohort_size']) * 100000
 df3['case_per_100k'] = (df3['possible_cancer_cases'] / df3['cohort_size']) * 100000
@@ -60,9 +48,23 @@ df3['normalized_cases'] = df3.apply(lambda row:
                                      axis=1)
 
 
+
 # Project title description
 st.write('## HPV dashboard')
 st.write('### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
+
+st.write('### preview of source data')
+st.dataframe(df3.head(50))
+
+csv = df3.to_csv(index=False)  # Set index=False if you don't want the index in the CSV
+# Create download button
+st.download_button(
+    label="Press to Download",
+    data=csv,
+    file_name="cohort_data.csv",
+    mime="text/csv",
+    key='download-csv'
+)
 
 # Slider for year
 year= st.slider('Year', min_value=2010, max_value=2030, value=2020)
