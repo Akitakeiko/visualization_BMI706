@@ -28,7 +28,7 @@ def return_income_map(df_cleaned):
     ).project(project
     ).transform_lookup(
         lookup="id",
-        from_=alt.LookupData(df_cleaned, "country-code", ['country_name', 'income_group']),
+        from_=alt.LookupData(df_cleaned, "country-code", ['Country', 'income_group']),
     )
 
     income_group = alt.Color('income_group:N',type='nominal', scale=alt.Scale(scheme='viridis'))
@@ -40,7 +40,7 @@ def return_income_map(df_cleaned):
 
     ).transform_lookup(
     lookup='id',
-    from_=alt.LookupData(df_cleaned, 'country-code', ['country_name', 'income_group'])
+    from_=alt.LookupData(df_cleaned, 'country-code', ['Country', 'income_group'])
     ).properties(
     title='Income group worldwide overall'
     )
@@ -68,14 +68,14 @@ def return_world_map(df_cleaned, selected_year):
     ).project(project
     ).transform_lookup(
         lookup="id",
-        from_=alt.LookupData(df_cleaned, "country-code", ['country_name', 'income_group', 'possible_cancer_cases']),
+        from_=alt.LookupData(df_cleaned, "country-code", ['Country', 'income_group', 'possible_cancer_cases']),
     )
     chart_case = chart_base.mark_geoshape().encode(
     color= rate_color,
     tooltip=["possible_cancer_cases:Q", "Country:N"]
     ).transform_lookup(
     lookup='id',
-    from_=alt.LookupData(df_cleaned, 'country-code', ['country_name','possible_cancer_cases'])
+    from_=alt.LookupData(df_cleaned, 'country-code', ['Country','possible_cancer_cases'])
     ).properties(
         title=f'HPV-induced cervical cancer cases worldwide in {selected_year}'
     )
