@@ -77,7 +77,7 @@ def return_world_map(df_cleaned, selected_year):
     lookup='id',
     from_=alt.LookupData(df_cleaned, 'country-code', ['Country','possible_cancer_cases'])
     ).properties(
-        title=f'HPV cases worldwide in {selected_year}'
+        title=f'HPV-induced cervical cancer cases worldwide in {selected_year}'
     )
     
     cases_map = alt.vconcat(background+chart_case

@@ -47,7 +47,7 @@ df3['normalized_cases'] = df3.apply(lambda row:
 
 # Project title description
 st.title('HPV dashboard')
-st.write('### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
+st.write('### Explore spatial and temporal HPV-induced cervial cancer cases, and how they related with income groups and HPV vaccination cost')
 
 st.write('#### preview of source data')
 st.dataframe(df3.head(50))
