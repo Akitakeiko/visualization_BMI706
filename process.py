@@ -64,7 +64,7 @@ st.write('### Explore spatial and temporal HPV cases, income group and vaccinati
 
 # Slider for year
 year= st.slider('Year', min_value=2010, max_value=2030, value=2020)
-subset = df[df["year"] == year]
+subset = df3[df3["year"] == year]
 
 countries_default = [
     "Austria",
@@ -78,9 +78,6 @@ countries_default = [
 countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
-subset3 = df3[df3["year"] == year]
-
-
 
 
 from map import return_world_map, return_income_map
@@ -112,7 +109,7 @@ st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
 
 # Create a piechart 
-pie = alt.Chart(subset3).mark_arc(innerRadius=50).encode(
+pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_deaths):Q',
     color= 'income_group:N',
     tooltip=['income_group', 'sum(normalized_deaths)']
@@ -123,7 +120,7 @@ pie = alt.Chart(subset3).mark_arc(innerRadius=50).encode(
 
 )
 
-pie2 = alt.Chart(subset3).mark_arc(innerRadius=50).encode(
+pie2 = alt.Chart(subset).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_cases):Q',
     color= 'income_group:N',
     tooltip=['income_group', 'sum(normalized_cases)']
@@ -169,7 +166,7 @@ subset = df3[df3["income_group"] == incomegroup]
 
 
 
-income1 = alt.Chart(subset3).mark_line(point=True,color='blue').encode(
+income1 = alt.Chart(subset).mark_line(point=True,color='blue').encode(
     x=alt.X('year:O', axis=alt.Axis(title='Year')),
     y=alt.Y('sum(death_per_100k):Q', axis=alt.Axis(title='death_per_100k')),
     tooltip=['year:O', alt.Tooltip('sum(death_per_100k):Q', title='Total Deaths')]
@@ -179,7 +176,7 @@ income1 = alt.Chart(subset3).mark_line(point=True,color='blue').encode(
     height=250
 )
 
-income2 = alt.Chart(subset3).mark_line(point=True,color='green').encode(
+income2 = alt.Chart(subset).mark_line(point=True,color='green').encode(
     x=alt.X('year:O', axis=alt.Axis(title='Year')),
     y=alt.Y('sum(case_per_100k):Q', axis=alt.Axis(title='death_per_100k')),
     tooltip=['year:O', alt.Tooltip('sum(case_per_100k):Q', title='Total Deaths')]
