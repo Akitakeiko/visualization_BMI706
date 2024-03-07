@@ -93,12 +93,12 @@ st.altair_chart(cases_map, use_container_width=True)
 bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     x=alt.Y('sum(cohort_size):Q', title='Sum of cohort size'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
-    tooltip=['country_name:N', 'sum(cohort_size):Q']
+    tooltip=['country_name', 'sum(cohort_size):Q']
 ).properties(
     title='Cohort Size by Country'
 )
 
-bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
+bar_chart_cases = alt.Chart(subset3).mark_bar(color='pink').encode(
     x=alt.Y('sum(possible_cancer_cases):Q', title='Sum of HPV cancer cases'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
     tooltip=['country_name:N', 'sum(possible_cancer_cases):Q']
