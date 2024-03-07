@@ -105,11 +105,8 @@ bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
     title='Possible HPV-induced cervical cancer Cases by Country'
 )
 
-st.write("### Temporal cervical cancer cases and cohort sizes by countries")
-st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
-
 
 
 # Create a piechart 
@@ -181,9 +178,9 @@ income2 = alt.Chart(subset3).mark_line(point=True,color='green').encode(
 )
 
 st.write("### Linking HPV-induced cervical cancer cases/deaths to income group")
+st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(chart)
 st.altair_chart(donut)
-st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(income1)
 st.altair_chart(income2)
 
