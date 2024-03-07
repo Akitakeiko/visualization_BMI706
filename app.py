@@ -23,7 +23,7 @@ st.set_page_config(
     layout="wide",
 	initial_sidebar_state = "auto", 
 	page_title = "HPV dashboard",
-    page_icon = '/Users/akitakeiko/visualization_BMI706/img/hpv.png'
+    page_icon = 'https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/img/hpv.png'
 )
 
 
