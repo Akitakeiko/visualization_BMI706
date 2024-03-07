@@ -3,7 +3,7 @@ This is the project repository for BMI706 visualization project implementation.
 
 Team members:
 - Cheryl Gu
-- Mian ZHao
+- Mian Zhao
 
 ---
 
