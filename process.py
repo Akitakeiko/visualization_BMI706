@@ -110,8 +110,10 @@ st.write("### HPV cases vs. cohort sizes")
 st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
 
+
+subset3 = df3[df3["year"] == year]
 # Create a piechart 
-pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
+pie = alt.Chart(subset3).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_deaths):Q',
     color= 'income_group:N',
     tooltip=['income_group', 'sum(normalized_deaths)']
@@ -122,7 +124,7 @@ pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
 
 )
 
-pie2 = alt.Chart(subset).mark_arc(innerRadius=50).encode(
+pie2 = alt.Chart(subset3).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_cases):Q',
     color= 'income_group:N',
     tooltip=['income_group', 'sum(normalized_cases)']
@@ -168,7 +170,7 @@ subset = df3[df3["income_group"] == incomegroup]
 
 
 
-income1 = alt.Chart(subset).mark_line(point=True,color='blue').encode(
+income1 = alt.Chart(subset3).mark_line(point=True,color='blue').encode(
     x=alt.X('year:O', axis=alt.Axis(title='Year')),
     y=alt.Y('sum(death_per_100k):Q', axis=alt.Axis(title='death_per_100k')),
     tooltip=['year:O', alt.Tooltip('sum(death_per_100k):Q', title='Total Deaths')]
@@ -178,7 +180,7 @@ income1 = alt.Chart(subset).mark_line(point=True,color='blue').encode(
     height=250
 )
 
-income2 = alt.Chart(subset).mark_line(point=True,color='green').encode(
+income2 = alt.Chart(subset3).mark_line(point=True,color='green').encode(
     x=alt.X('year:O', axis=alt.Axis(title='Year')),
     y=alt.Y('sum(case_per_100k):Q', axis=alt.Axis(title='death_per_100k')),
     tooltip=['year:O', alt.Tooltip('sum(case_per_100k):Q', title='Total Deaths')]
