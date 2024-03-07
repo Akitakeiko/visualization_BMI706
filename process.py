@@ -166,7 +166,7 @@ df3 = df3.dropna(subset=['cohort_size'])
 
 
 incomegroup = st.radio("Select Income group for trend line", ('Low income', 'Lower middle income','Upper middle income','High income'))
-subset = df3[df3["income_group"] == incomegroup]
+subset3 = df3[df3["income_group"] == incomegroup]
 
 
 
