@@ -78,6 +78,8 @@ countries_default = [
 countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
+subset3 = df3[df3["year"] == year]
+subset3 = subset3[subset3["country_name"].isin(countries)]
 
 
 from map import return_world_map, return_income_map
@@ -96,7 +98,7 @@ bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     title='Cohort Size by Country'
 )
 
-bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
+bar_chart_cases = alt.Chart(subset3).mark_bar(color='pink').encode(
     x=alt.Y('sum(possible_cancer_cases):Q', title='Sum of HPV cancer cases'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
     tooltip=['country_name:N', 'sum(possible_cancer_cases):Q']
@@ -109,7 +111,7 @@ st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
 
 # Create a piechart 
-pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
+pie = alt.Chart(subset3).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_deaths):Q',
     color= 'income_group:N',
     tooltip=['income_group', 'sum(normalized_deaths)']
@@ -120,7 +122,7 @@ pie = alt.Chart(subset).mark_arc(innerRadius=50).encode(
 
 )
 
-pie2 = alt.Chart(subset).mark_arc(innerRadius=50).encode(
+pie2 = alt.Chart(subset3).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_cases):Q',
     color= 'income_group:N',
     tooltip=['income_group', 'sum(normalized_cases)']
@@ -166,7 +168,7 @@ subset = df3[df3["income_group"] == incomegroup]
 
 
 
-income1 = alt.Chart(subset).mark_line(point=True,color='blue').encode(
+income1 = alt.Chart(subset3).mark_line(point=True,color='blue').encode(
     x=alt.X('year:O', axis=alt.Axis(title='Year')),
     y=alt.Y('sum(death_per_100k):Q', axis=alt.Axis(title='death_per_100k')),
     tooltip=['year:O', alt.Tooltip('sum(death_per_100k):Q', title='Total Deaths')]
@@ -176,7 +178,7 @@ income1 = alt.Chart(subset).mark_line(point=True,color='blue').encode(
     height=250
 )
 
-income2 = alt.Chart(subset).mark_line(point=True,color='green').encode(
+income2 = alt.Chart(subset3).mark_line(point=True,color='green').encode(
     x=alt.X('year:O', axis=alt.Axis(title='Year')),
     y=alt.Y('sum(case_per_100k):Q', axis=alt.Axis(title='death_per_100k')),
     tooltip=['year:O', alt.Tooltip('sum(case_per_100k):Q', title='Total Deaths')]
