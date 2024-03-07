@@ -1,3 +1,5 @@
+### This file is for implementing the final HPV dashboard in the streamlit app
+
 import altair as alt
 import pandas as pd
 import streamlit as st
@@ -5,13 +7,7 @@ import os
 import numpy as np
 from vega_datasets import data
 
-### P1.2 ###
-
-# Move this code into `load_data` function {{
-
-
-# }}
-
+# import datasets
 from data_clean import vaccine_df, hpv_df, cohort_df, country_df
 df = vaccine_df()
 df2 = hpv_df()

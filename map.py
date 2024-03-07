@@ -1,3 +1,6 @@
+### This file is for implementing world map functions and export world map 
+### with the variable of interest to the streamlit app file
+
 import altair as alt
 from vega_datasets import data
 

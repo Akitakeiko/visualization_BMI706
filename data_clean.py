@@ -1,3 +1,6 @@
+### These datasets are generally cleaned adn imported in csv format from the data folder
+### Except for hpv vaccine data, which is re-processed here.
+
 import numpy as np
 import pandas as pd
 
