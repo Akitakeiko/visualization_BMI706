@@ -3,8 +3,6 @@
 
 import altair as alt
 import pandas as pd
-import streamlit as st
-import numpy as np
 from vega_datasets import data
 
 def vaccine_df():

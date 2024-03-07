@@ -13,8 +13,6 @@ df2 = hpv_df()
 df3 = cohort_df() 
 df4 = country_df()
 
-## Allow using rows more than 5000
-alt.data_transformers.disable_max_rows(); 
 
 # create image for the website
 st.set_page_config(
