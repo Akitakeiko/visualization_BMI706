@@ -7,12 +7,11 @@ import streamlit as st
 import numpy as np
 from vega_datasets import data
 
-@st.cache
 def vaccine_df():
     df = pd.read_csv('https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_dfall.csv', index_col = 0)
     return df
 
-@st.cache
+
 def hpv_df():
     hpv_past = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/hpv_past_results.csv", index_col = 0)
     hpv_2020 = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/hpv_2020s_results.csv", index_col = 0)
@@ -26,12 +25,12 @@ def hpv_df():
     df2 = pd.concat([hpv_past_melted, hpv_2020_melted])
     return df2
 
-@st.cache
+
 def cohort_df():
     df3 = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/combined_cohort.csv", index_col = 0)
     return df3
 
-@st.cache
+
 def country_df():
     df4 = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/country-code_cohort.csv", index_col = 0)
     return df4
