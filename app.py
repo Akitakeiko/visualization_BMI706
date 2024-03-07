@@ -67,6 +67,13 @@ year= st.slider('Year', min_value=2010, max_value=2030, value=2020)
 subset = df[df["year"] == year]
 subset3 = df3[df3["year"] == year]
 
+from map import return_world_map, return_income_map
+cases_map = return_world_map(df4,year)
+income_map = return_income_map(df4)
+
+st.altair_chart(cases_map, use_container_width=True)
+
+
 countries_default = [
     "Austria",
     "United Kingdom",
@@ -80,14 +87,6 @@ countries_default = [
 countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
-
-
-from map import return_world_map, return_income_map
-cases_map = return_world_map(df4,year)
-income_map = return_income_map(df4)
-
-st.altair_chart(cases_map, use_container_width=True)
-
 
 bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     x=alt.Y('sum(cohort_size):Q', title='Sum of cohort size'),
