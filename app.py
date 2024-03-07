@@ -73,6 +73,21 @@ income_map = return_income_map(df4)
 
 st.altair_chart(cases_map, use_container_width=True)
 
+
+countries_default = [
+    "Austria",
+    "United Kingdom",
+    "Brazil",
+    "Spain",
+    "China",
+    "United States",
+    "Iceland",
+]
+
+countries_name =  df["country_name"].unique()
+countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
+subset = subset[subset["country_name"].isin(countries)]
+
 bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     x=alt.Y('sum(cohort_size):Q', title='Sum of cohort size'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
@@ -92,21 +107,6 @@ bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
 
 st.write("### Temporal cervical cancer cases and cohort sizes by countries")
 st.altair_chart(income_map, use_container_width=True)
-
-countries_default = [
-    "Austria",
-    "United Kingdom",
-    "Brazil",
-    "Spain",
-    "China",
-    "United States",
-    "Iceland",
-]
-
-countries_name =  df["country_name"].unique()
-countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
-subset = subset[subset["country_name"].isin(countries)]
-
 st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
 
