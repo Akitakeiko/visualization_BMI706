@@ -26,5 +26,5 @@ def cohort_df():
     return df3
 
 def country_df():
-    df4 = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/country-code_cohort.csv")
+    df4 = pd.read_csv("https://raw.githubusercontent.com/Akitakeiko/visualization_BMI706/main/Data/country-code_cohort.csv", index_col = 0)
     return df4
