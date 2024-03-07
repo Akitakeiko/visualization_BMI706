@@ -23,8 +23,8 @@ background = alt.Chart(source
 def return_income_map(df_cleaned):
     chart_base = alt.Chart(source
     ).properties(
-        width=600,
-        height=300
+        width=width,
+        height=height
     ).project(project
     ).transform_lookup(
         lookup="id",
