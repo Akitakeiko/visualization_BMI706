@@ -75,7 +75,7 @@ countries_default = [
     "United States",
     "Iceland",
 ]
-countries_name =  df["country_name"].unique()
+countries_name =  df3["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
 
