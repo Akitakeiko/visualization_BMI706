@@ -64,7 +64,7 @@ st.download_button(
 
 # Slider for year
 year= st.slider('Year', min_value=2010, max_value=2030, value=2020)
-subset = df[df["year"] == year]
+subset = df4[df4["year"] == year]
 subset3 = df3[df3["year"] == year]
 
 countries_default = [
