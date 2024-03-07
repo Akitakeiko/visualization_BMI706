@@ -50,7 +50,7 @@ df3['normalized_cases'] = df3.apply(lambda row:
 
 
 # Project title description
-st.write('## HPV dashboard')
+st.write('HPV dashboard')
 st.write('### Explore spatial and temporal HPV cases, income group and vaccination coverage.')
 
 st.write('#### preview of source data')
@@ -229,7 +229,7 @@ stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
 )
 
 # display the chart 
-st.title('Cancer/death Data Visualization')
+st.title('###Cancer/death Data Visualization')
 st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 
