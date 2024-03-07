@@ -49,7 +49,7 @@ df3['normalized_cases'] = df3.apply(lambda row:
 st.title('HPV dashboard')
 st.write('### Explore spatial and temporal HPV-induced cervial cancer cases, and how they related with income groups and HPV vaccination cost')
 
-st.write('#### preview of source data')
+st.write('#### - Preview of source data')
 st.dataframe(df3.head(50))
 
 csv = df3.to_csv(index=False)  # Set index=False if you don't want the index in the CSV
@@ -86,7 +86,6 @@ from map import return_world_map, return_income_map
 cases_map = return_world_map(df4,year)
 income_map = return_income_map(df4)
 
-st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(cases_map, use_container_width=True)
 
 
@@ -107,7 +106,8 @@ bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
     title='Possible HPV-induced cervical cancer Cases by Country'
 )
 
-st.write("### HPV-induced cervical cancer cases vs. cohort sizes")
+st.write("### Temporal cervical cancer cases and cohort sizes by countries")
+st.altair_chart(income_map, use_container_width=True)
 st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
 
@@ -140,9 +140,6 @@ donut = alt.hconcat(pie, pie2).resolve_scale(
     color='independent'
 )
 
-donut
-
-
 
 chart = alt.Chart(df3).mark_bar().encode(
     x=alt.X('income_group:N', axis=alt.Axis(title='', labels=False)),  # Remove x-axis label
@@ -157,18 +154,11 @@ chart = alt.Chart(df3).mark_bar().encode(
     height=150  # And the height of the chart
 )
 
-chart
-
 
 df3 = df3.dropna(subset=['cohort_size'])
 
-
-
-
 incomegroup = st.radio("Select Income group for trend line", ('Low income', 'Lower middle income','Upper middle income','High income'))
 subset3 = df3[df3["income_group"] == incomegroup]
-
-
 
 
 income1 = alt.Chart(subset3).mark_line(point=True,color='blue').encode(
@@ -191,10 +181,13 @@ income2 = alt.Chart(subset3).mark_line(point=True,color='green').encode(
     height=250
 )
 
-income1
-income2
+st.write("### Linking HPV-induced cervical cancer cases/deaths to income group")
+st.altair_chart(chart, use_container_width=True)
+st.altair_chart(donut, use_container_width=True)
+st.altair_chart(income_map, use_container_width=True)
+st.altair_chart(income1, use_container_width=True)
+st.altair_chart(income2, use_container_width=True)
 
-# Task 3
 df_melted = df.melt(id_vars=['year'], value_vars=['proj_cost', 'curr_cost'], var_name='category', value_name='value')
 
 # Create the stacked bar chart
@@ -206,10 +199,9 @@ stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
 ).properties(
     width=600,
     height=400,
-    title='Yearly Comparison of Current and Projected Cost'
+    title='Yearly Comparison of Current and Projected Cost of HPV vaccines'
 )
 
-st.altair_chart(stacked_bar_chart, use_container_width=True)
 # user input for filtering
 selected_assumption = st.selectbox("Select Assumption Type", options=df2['assumption_type'].unique())
 # Filter data based on selection
@@ -225,7 +217,8 @@ stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
 )
 
 # display the chart 
-st.write('#### Cancer/death Data Visualization')
+st.write('#### Linking cervical cancer cases/deaths to vaccination')
+st.altair_chart(stacked_bar_chart, use_container_width=True)
 st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 
