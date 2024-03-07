@@ -191,7 +191,7 @@ st.altair_chart(income2, use_container_width=True)
 df_melted = df.melt(id_vars=['year'], value_vars=['proj_cost', 'curr_cost'], var_name='category', value_name='value')
 
 # Create the stacked bar chart
-stacked_bar_chart = alt.Chart(df_melted).mark_bar().encode(
+stacked_bar_chart_vaccines = alt.Chart(df_melted).mark_bar().encode(
     x='year:N',  # N indicates nominal/categorical data
     y=alt.Y('sum(value):Q', stack='zero', title='Total Value'),  # Stack the bars
     color='category:N',  # Differentiate by category
@@ -207,7 +207,7 @@ selected_assumption = st.selectbox("Select Assumption Type", options=df2['assump
 # Filter data based on selection
 filtered_df = df2[df2['assumption_type'] == selected_assumption]
 # stacked bar chart for visualization
-stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
+stacked_bar_chart_prevention = alt.Chart(filtered_df).mark_bar().encode(
     x='year:N',  # Year is nominal data
     y=alt.Y('sum(value):Q', stack='zero'),  # Stack the values of cancer_prevented and deaths_prevented
     color=alt.Color('metric:N', scale=alt.Scale(scheme='viridis')),   # Color by metric (cancer_prevented or deaths_prevented)
@@ -218,8 +218,8 @@ stacked_bar_chart = alt.Chart(filtered_df).mark_bar().encode(
 
 # display the chart 
 st.write('#### Linking cervical cancer cases/deaths to vaccination')
-st.altair_chart(stacked_bar_chart, use_container_width=True)
-st.altair_chart(stacked_bar_chart, use_container_width=True)
+st.altair_chart(stacked_bar_chart_vaccines, use_container_width=True)
+st.altair_chart(stacked_bar_chart_prevention, use_container_width=True)
 
 
 
