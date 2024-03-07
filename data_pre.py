@@ -1,3 +1,6 @@
+### These data pre-processing steps were performed on local python environment 
+### then export to csv and upload in the data folder
+
 import pandas as pd
 
 country_df = pd.read_csv('https://raw.githubusercontent.com/hms-dbmi/bmi706-2022/main/cancer_data/country_codes.csv', dtype = {'conuntry-code': str})
