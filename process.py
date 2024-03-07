@@ -64,7 +64,7 @@ st.write('### Explore spatial and temporal HPV cases, income group and vaccinati
 
 # Slider for year
 year= st.slider('Year', min_value=2010, max_value=2030, value=2020)
-subset = df3[df3["year"] == year]
+subset = df[df["year"] == year]
 
 countries_default = [
     "Austria",
@@ -75,7 +75,8 @@ countries_default = [
     "United States",
     "Iceland",
 ]
-countries_name =  df3["country_name"].unique()
+
+countries_name =  df["country_name"].unique()
 countries = st.multiselect("Countries", options = countries_name, default = countries_default) 
 subset = subset[subset["country_name"].isin(countries)]
 
