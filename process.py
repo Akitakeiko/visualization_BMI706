@@ -65,6 +65,7 @@ st.write('### Explore spatial and temporal HPV cases, income group and vaccinati
 # Slider for year
 year= st.slider('Year', min_value=2010, max_value=2030, value=2020)
 subset = df[df["year"] == year]
+subset3 = df3[df3["year"] == year]
 
 countries_default = [
     "Austria",
@@ -111,7 +112,7 @@ st.altair_chart(bar_chart_cohort, use_container_width=True)
 st.altair_chart(bar_chart_cases, use_container_width=True)
 
 
-subset3 = df3[df3["year"] == year]
+
 # Create a piechart 
 pie = alt.Chart(subset3).mark_arc(innerRadius=50).encode(
     theta='sum(normalized_deaths):Q',
