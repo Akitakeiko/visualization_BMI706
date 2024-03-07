@@ -97,15 +97,13 @@ bar_chart_cohort = alt.Chart(subset).mark_bar(color='steelblue').encode(
     title='Cohort Size by Country'
 )
 
-subset4 = df4[df4["year"] == year]
-subset4 = subset4[subset4["country_name"].isin(countries)]
 
-bar_chart_cases = alt.Chart(subset4).mark_bar(color='pink').encode(
-    x=alt.Y('sum(possible_cancer_cases):Q', title='Sum of HPV cancer cases'),
+bar_chart_cases = alt.Chart(subset).mark_bar(color='pink').encode(
+    x=alt.Y('sum(curr_cc_prev):Q', title='Sum of HPV caused cervical cancer cases'),
     y=alt.X('country_name:N', title='Country', sort='-x'),
-    tooltip=['country_name:N', 'sum(possible_cancer_cases):Q']
+    tooltip=['country_name:N', 'sum(curr_cc_prev):Q']
 ).properties(
-    title='Possible HPV Cancer Cases by Country'
+    title='Possible HPV-caused cervical cancer Cases by Country'
 )
 
 st.write("### HPV cases vs. cohort sizes")
